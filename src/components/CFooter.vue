@@ -57,7 +57,7 @@ const numberData = ref<any>([
     img: 行李箱图标
   },
   {
-    title: '2022年山东人口出游支出',
+    title: '2022年鹤壁人口出游支出',
     value: 8373.1,
     unit: '万元',
     compare: 'down',

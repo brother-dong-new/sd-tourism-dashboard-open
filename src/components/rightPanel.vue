@@ -5,7 +5,7 @@
     <industryRevenue />
     <!-- 接待游客人数TOP5 -->
     <top5Tourists />
-    <!-- 山东省实时热词 -->
+    <!-- 鹤壁市实时热词 -->
     <realTimeHotWords />
   </div>
 </template>

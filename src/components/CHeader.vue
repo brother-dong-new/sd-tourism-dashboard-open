@@ -1,6 +1,6 @@
 <!-- 顶部标题 -->
 <template>
-  <header class="header">山东省旅游指标监控平台</header>
+  <header class="header">鹤壁市旅游指标监控平台</header>
   <!-- 文字轮播 -->
   <div class="text-carousel">
     <transition-group name="carousel" tag="div" class="carousel-container">
@@ -17,7 +17,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 // 轮播数据
 const carouselData = ref([
   '济宁市微山湖旅游区达到国家5A级旅游景区标准要求，拟确定为国家5A级旅游景区!',
-  '山东省文化和旅游厅发布《关于促进文化和旅游消费的若干措施》',
+  '鹤壁市文化和旅游厅发布《关于促进文化和旅游消费的若干措施》',
   '青岛市崂山风景区入选"中国最美旅游景区"榜单',
   '烟台市蓬莱阁景区推出夜游项目，游客体验度大幅提升',
   '威海市刘公岛景区新增海洋文化展览馆',

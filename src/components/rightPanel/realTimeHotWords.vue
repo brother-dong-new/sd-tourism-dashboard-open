@@ -1,7 +1,7 @@
-<!-- 山东实时热词  -->
+<!-- 鹤壁实时热词  -->
 <template>
   <CPanel>
-    <template #header>山东实时热词</template>
+    <template #header>鹤壁市实时热词</template>
     <template #content>
       <div class="words">
         <CEcharts :option="option" />
