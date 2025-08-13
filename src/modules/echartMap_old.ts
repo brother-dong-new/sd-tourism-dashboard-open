@@ -1,17 +1,13 @@
 import * as echarts from 'echarts'
-import hbData from '@/assets/data/鹤壁市'
+import sdData from '@/assets/data/山东省'
 import mapBg from '@/assets/images/mapBg.png'
 import lineTop1 from '@/assets/images/lineTop1.png'
 import lineTop2 from '@/assets/images/lineTop2.png'
 import lineTop3 from '@/assets/images/lineTop3.png'
 import lineTop4 from '@/assets/images/lineTop4.png'
 import lineTop5 from '@/assets/images/lineTop5.png'
-echarts.registerMap('hb', hbData as any)
+echarts.registerMap('sd', sdData as any)
 const lineTopList: any = [lineTop1, lineTop2, lineTop3, lineTop4, lineTop5]
-// 柱体高度缩放（0-1之间，越小柱子越矮）
-const PILLAR_HEIGHT_SCALE = 0.05
-// 顶部信息卡相对于柱顶的额外偏移（纬度单位）
-const TOP_ICON_OFFSET_BASE = 0.015
 // 获取地图配置
 export const getMapOption = () => {
   // 渐变层颜色
@@ -33,7 +29,7 @@ export const getMapOption = () => {
   const geoList: any = []
   for (let i = 1; i <= colorList.length; i++) {
     const mapOption: any = {
-      map: 'hb',
+      map: 'sd',
       aspectScale: 0.85,
       emphasis: {
         disabled: true
@@ -60,7 +56,7 @@ export const getMapOption = () => {
     geo: [
       // 最外围发光边界
       {
-        map: 'hb',
+        map: 'sd',
         aspectScale: 0.85,
         layoutCenter: ['50%', '50%'], //地图位置
         layoutSize: '100%',
@@ -79,7 +75,7 @@ export const getMapOption = () => {
       },
       // 最外层遮罩蒙版
       {
-        map: 'hb',
+        map: 'sd',
         aspectScale: 0.85,
         layoutCenter: ['50%', '50%'], //地图位置
         layoutSize: '100%',
@@ -98,7 +94,7 @@ export const getMapOption = () => {
       },
       // 内部蓝色边界
       {
-        map: 'hb',
+        map: 'sd',
         aspectScale: 0.85,
         layoutCenter: ['50%', '50%'], //地图位置
         layoutSize: '100%',
@@ -133,37 +129,35 @@ const getLineData = () => {
     value: number
     point: number[]
   }[] = [
-    // 使用鹤壁市各区的质心作为点位，人口为 mock 数据（单位：万人）
     {
-      name: '淇滨区',
-      value: 42,
-      point: [114.226508, 35.787133]
+      name: '青岛市',
+      value: 267,
+      point: [120.150883, 36.451227]
     },
     {
-      name: '山城区',
-      value: 28,
-      point: [114.223534, 35.914795]
+      name: '济南市',
+      value: 200,
+      point: [117.221211, 36.640013]
     },
     {
-      name: '鹤山区',
-      value: 24,
-      point: [114.127099, 35.966546]
+      name: '临沂市',
+      value: 129,
+      point: [118.326443, 35.065282]
     },
     {
-      name: '浚县',
-      value: 31,
-      point: [114.482398, 35.671496]
+      name: '潍坊市',
+      value: 107,
+      point: [119.107078, 36.70925]
     },
     {
-      name: '淇县',
-      value: 19,
-      point: [114.161841, 35.661286]
+      name: '济宁市',
+      value: 86,
+      point: [116.740918, 35.371173]
     }
   ]
   const lineSeriesData: any = []
   const maxValue: number = Math.max(...districtData.map(item => item.value))
   districtData.forEach((item: any, index: number) => {
-    
     // 柱子
     const lineData = {
       type: 'lines',
@@ -204,10 +198,7 @@ const getLineData = () => {
       data: [
         {
           ...item,
-          coords: [
-            item.point,
-            [item.point[0], item.point[1] + (item.value / maxValue) * PILLAR_HEIGHT_SCALE]
-          ]
+          coords: [item.point, [item.point[0], item.point[1] + item.value / maxValue]]
         }
       ]
     }
@@ -227,8 +218,8 @@ const getLineData = () => {
       },
       silent: true,
       data: [
-        [item.point[0], item.point[1] + (item.value / maxValue) * PILLAR_HEIGHT_SCALE],
-        [item.point[0], item.point[1] + (item.value / maxValue) * PILLAR_HEIGHT_SCALE]
+        [item.point[0], item.point[1] + item.value / maxValue],
+        [item.point[0], item.point[1] + item.value / maxValue]
       ]
     }
     // 柱子底部
@@ -344,10 +335,7 @@ const getLineData = () => {
         {
           name: item.name,
           data: item.value,
-          value: [
-            item.point[0],
-            item.point[1] + (item.value / maxValue) * PILLAR_HEIGHT_SCALE + TOP_ICON_OFFSET_BASE
-          ]
+          value: [item.point[0], item.point[1] + item.value / maxValue + 0.2]
         }
       ]
     }
