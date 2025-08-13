@@ -25,7 +25,7 @@ const mapOption = ref(getMapOption())
   .map-content {
     position: relative;
     width: 1920px;
-    height: 1080px;
+    height: 900px;
   }
 }
 </style>
