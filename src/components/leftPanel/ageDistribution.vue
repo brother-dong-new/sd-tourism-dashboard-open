@@ -1,7 +1,7 @@
 <!-- 游客年龄分布 -->
 <template>
   <CPanel class="age-distribution">
-    <template #header>游客年龄分布</template>
+    <template #header>PM2.5 颗粒物组分</template>
     <template #content>
       <CEcharts ref="chartRef" :option="option" @onload="startHighlightLoop" />
     </template>
@@ -19,7 +19,8 @@ const option = ref<EChartsOption>({})
 const chartRef = ref()
 let highlightTimer: any = null
 let currentIndex = 0
-const values: number[] = [2000, 1430, 800, 410, 120]
+// 使用组分数据模拟值
+const values: number[] = [28, 15, 18, 12, 10]
 // 高亮循环方法
 const startHighlightLoop = (chart: any) => {
   if (!chart) return
@@ -130,7 +131,7 @@ const createEchartBar = (): EChartsOption => {
     },
     xAxis: {
       type: 'category',
-      data: ['20以下', '20-30', '30-40', '40-50', '50以上'],
+      data: ['有机碳', '硫酸盐', '硝酸盐', '铵盐', '元素碳'],
       axisLine: {
         show: true,
         lineStyle: {
@@ -152,7 +153,7 @@ const createEchartBar = (): EChartsOption => {
       axisLine: {
         show: false
       },
-      name: '万人',
+      name: 'μg/m³',
       nameTextStyle: {
         color: 'rgba(201, 211, 234, 1)',
         fontSize: 14,

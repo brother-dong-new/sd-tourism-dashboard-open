@@ -1,7 +1,7 @@
 <!-- 各行业收入 -->
 <template>
   <CPanel>
-    <template #header>各行业收入</template>
+    <template #header>各站点 AQI 对比</template>
     <template #content>
       <CEcharts ref="chartRef" :option="option" @onload="startHighlightLoop" />
     </template>
@@ -21,35 +21,11 @@ let currentIndex = 0
 const VALUE = [100, 200, 300, 400, 500, 600, 700]
 
 const createEchartBar = () => {
-  const xAxisData = ['旅游', '住宿', '餐饮', '购物', '娱乐', '交通', '其他']
-  const seriesData = [
-    {
-      value: 100
-    },
-    {
-      value: 200
-    },
-    {
-      value: 300
-    },
-    {
-      value: 400
-    },
-    {
-      value: 500
-    },
-    {
-      value: 600
-    },
-    {
-      value: 700
-    }
-  ]
+  // 使用实时 AQI 模拟对比
+  const xAxisData = ['淇滨区', '山城区', '鹤山区', '浚县', '淇县', '城市东部']
+  const seriesData = [78, 92, 65, 105, 83, 74]
 
-  let maxAmount = 0
-  seriesData.map(item => {
-    item.value > maxAmount ? (maxAmount = item.value) : (maxAmount = maxAmount)
-  })
+  let maxAmount = Math.max(...seriesData)
 
   return {
     grid: {
@@ -123,9 +99,7 @@ const createEchartBar = () => {
           normal: {
             show: true,
             position: 'top',
-            formatter: (params: any) => {
-              return [...Object.values(seriesData[params.dataIndex])].join('\n')
-            },
+             formatter: (params: any) => `${seriesData[params.dataIndex]}`,
             fontSize: 12,
             lineHeight: 16,
             color: '#93B9FF'
@@ -161,7 +135,7 @@ const createEchartBar = () => {
         },
         z: 1,
         zlevel: 0,
-        data: seriesData.map(item => item.value)
+         data: seriesData
       },
       {
         type: 'pictorialBar',
@@ -178,7 +152,7 @@ const createEchartBar = () => {
         symbolSize: [14, 2],
         symbolPosition: 'start',
         symbolOffset: [0, 0],
-        data: seriesData.map(item => item.value),
+         data: seriesData,
         z: 2,
         zlevel: 0
       }

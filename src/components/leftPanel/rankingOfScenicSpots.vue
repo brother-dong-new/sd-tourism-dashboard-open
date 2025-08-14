@@ -1,7 +1,7 @@
 <!-- 景点人流排名 -->
 <template>
   <CPanel>
-    <template #header>景点人流排名</template>
+    <template #header>国控站点实时要素排名</template>
     <template #content>
       <vue3ScrollSeamless
         :dataList="list"
@@ -34,7 +34,7 @@
 import { vue3ScrollSeamless } from 'vue3-scroll-seamless'
 import CPanel from '@/components/common/CPanel.vue'
 import { onMounted, ref, useId } from 'vue'
-import { rankingOfScenicSpots } from '@/assets/data/人流排名'
+import { realtimeAir } from '@/assets/data/realtime-air'
 const list = ref<{ label: string; value: number }[]>([])
 let maxValue = 0
 // 计算进度
@@ -42,8 +42,10 @@ const getProgressValue = (value: number) => {
   return -((maxValue - value) / maxValue) * 100 + '%'
 }
 onMounted(() => {
-  list.value = rankingOfScenicSpots.sort((a, b) => b.value - a.value)
-  maxValue = rankingOfScenicSpots.reduce((acc, item) => acc + item.value, 0)
+  // 以 PM2.5 为例做实时排名
+  const pairs = realtimeAir.map(s => ({ label: s.name, value: s.metrics.PM2_5 }))
+  list.value = pairs.sort((a, b) => b.value - a.value)
+  maxValue = list.value.reduce((acc, item) => acc + item.value, 0)
 })
 </script>
 <style lang="scss" scoped>

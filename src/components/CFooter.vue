@@ -41,27 +41,27 @@ import up from '@/assets/images/up.png'
 import down from '@/assets/images/down.png'
 const numberData = ref<any>([
   {
-    title: '2022年旅游业收入',
-    value: 12345.6,
-    unit: '万元',
+    title: '当前全市 AQI',
+    value: 82,
+    unit: '',
     compare: 'down',
-    proportion: 2.9,
+    proportion: 3.1,
     img: 收入图标
   },
   {
-    title: '2022年来访游客数',
-    value: 731.2,
-    unit: '万人',
+    title: 'PM2.5 平均浓度(μg/m³)',
+    value: 46.2,
+    unit: '',
     compare: 'up',
     proportion: 1.6,
     img: 行李箱图标
   },
   {
-    title: '2022年鹤壁人口出游支出',
-    value: 8373.1,
-    unit: '万元',
+    title: 'PM10 平均浓度(μg/m³)',
+    value: 92.4,
+    unit: '',
     compare: 'down',
-    proportion: 2.9,
+    proportion: 2.2,
     img: 刷卡图标
   }
 ])

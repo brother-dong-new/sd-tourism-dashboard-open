@@ -1,7 +1,7 @@
 <!-- 接待游客人数TOP5 -->
 <template>
   <CPanel>
-    <template #header>接待游客人数TOP5</template>
+    <template #header>PM2.5 浓度TOP5</template>
     <template #content>
       <CEcharts ref="chartRef" :option="option" @onload="startHighlightLoop" />
     </template>
@@ -34,7 +34,7 @@ const createEchartBar = () => {
     },
     xAxis: {
       type: 'category',
-      data: ['青岛市', '济南市', '烟台市', '威海市', '潍坊市'],
+      data: ['淇滨区', '浚县', '山城区', '鹤山区', '淇县'],
       axisLine: {
         show: false
       },
@@ -66,7 +66,7 @@ const createEchartBar = () => {
     },
     series: [
       {
-        name: '数(人次)',
+        name: 'PM2.5(μg/m³)',
         type: 'pictorialBar',
         barWidth: '150%',
         symbol: 'path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z',
@@ -130,7 +130,7 @@ const createEchartBar = () => {
             borderColor: 'rgba(218, 163, 88, 1)' // 边框颜色
           }
         },
-        data: [123, 100, 125, 100, 125],
+        data: [62, 58, 55, 48, 46],
         z: 10
       }
     ]

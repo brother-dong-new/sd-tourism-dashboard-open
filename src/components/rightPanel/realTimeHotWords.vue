@@ -1,7 +1,7 @@
 <!-- 鹤壁实时热词  -->
 <template>
   <CPanel>
-    <template #header>鹤壁市实时热词</template>
+    <template #header>空气质量实时提示</template>
     <template #content>
       <div class="words">
         <CEcharts :option="option" />
@@ -18,57 +18,15 @@ import defaultIcon from '@/assets/images/real-circle-defalut.png'
 import hotIcon from '@/assets/images/real-circle-hot.png'
 const option = ref<any>({})
 const initEcharts = () => {
-  const wordsData: {
-    name: string
-    value: number
-    position: number[]
-  }[] = [
-    {
-      name: '海边',
-      value: 19,
-      position: [50, 50]
-    },
-    {
-      name: '人多',
-      value: 4,
-      position: [10, 30]
-    },
-    {
-      name: '孔子',
-      value: 8,
-      position: [85, 80]
-    },
-    {
-      name: '老师儿',
-      value: 2,
-      position: [27, 55]
-    },
-    {
-      name: '热情',
-      value: 6,
-      position: [68, 17]
-    },
-
-    {
-      name: '豪爽',
-      value: 7,
-      position: [20, 90]
-    },
-    {
-      name: '大葱',
-      value: 5,
-      position: [35, 20]
-    },
-    {
-      name: '美食',
-      value: 4,
-      position: [65, 89]
-    },
-    {
-      name: '泰山',
-      value: 16,
-      position: [90, 40]
-    }
+  const wordsData: { name: string; value: number; position: number[] }[] = [
+    { name: 'PM2.5 偏高', value: 18, position: [52, 48] },
+    { name: 'PM10 抬升', value: 12, position: [22, 30] },
+    { name: 'O3 午后走高', value: 16, position: [85, 75] },
+    { name: 'CO 低位', value: 6, position: [27, 55] },
+    { name: 'SO2 稳定', value: 7, position: [68, 17] },
+    { name: '北风为主', value: 8, position: [20, 90] },
+    { name: '能见度良', value: 9, position: [35, 20] },
+    { name: '敏感人群防护', value: 14, position: [65, 89] }
   ]
   const optionData: any = []
   // 渲染数据，并写入chart

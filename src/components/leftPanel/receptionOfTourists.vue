@@ -1,7 +1,7 @@
 <!-- 年度接待游客比 -->
 <template>
   <CPanel>
-    <template #header>年度接待游客比</template>
+    <template #header>主要污染物月度趋势</template>
     <template #content>
       <CEcharts :option="option" />
     </template>
@@ -83,9 +83,9 @@ const createEchartLine = () => {
     ],
     series: [
       {
-        name: '2021年',
+        name: 'PM2.5',
         type: 'line',
-        data: [23, 60, 20, 36, 23, 85, 70, 60, 78, 89, 68, 56],
+        data: [35, 42, 28, 30, 40, 55, 62, 58, 48, 45, 38, 32],
         lineStyle: {
           normal: {
             width: 2,
@@ -123,9 +123,9 @@ const createEchartLine = () => {
         symbol: 'none'
       },
       {
-        name: '2022年',
+        name: 'PM10',
         type: 'line',
-        data: [145, 78, 88, 99, 36, 109, 120, 150, 99, 89, 100, 120],
+        data: [70, 88, 66, 72, 85, 98, 120, 110, 90, 86, 75, 68],
         lineStyle: {
           normal: {
             width: 2,

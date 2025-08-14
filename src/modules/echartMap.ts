@@ -1,5 +1,6 @@
 import * as echarts from 'echarts'
 import hbData from '@/assets/data/鹤壁市'
+import { realtimeAir } from '@/assets/data/realtime-air'
 import mapBg from '@/assets/images/mapBg.png'
 import lineTop1 from '@/assets/images/lineTop1.png'
 import lineTop2 from '@/assets/images/lineTop2.png'
@@ -128,37 +129,13 @@ export const getMapOption = () => {
 
 // 生成地图数据柱数据
 const getLineData = () => {
-  const districtData: {
-    name: string
-    value: number
-    point: number[]
-  }[] = [
-    // 使用鹤壁市各区的质心作为点位，人口为 mock 数据（单位：万人）
-    {
-      name: '淇滨区',
-      value: 42,
-      point: [114.226508, 35.787133]
-    },
-    {
-      name: '山城区',
-      value: 28,
-      point: [114.223534, 35.914795]
-    },
-    {
-      name: '鹤山区',
-      value: 24,
-      point: [114.127099, 35.966546]
-    },
-    {
-      name: '浚县',
-      value: 31,
-      point: [114.482398, 35.671496]
-    },
-    {
-      name: '淇县',
-      value: 19,
-      point: [114.161841, 35.661286]
-    }
+  // 使用实时 AQI 作为柱高
+  const districtData: { name: string; value: number; point: number[] }[] = [
+    { name: '淇滨区', value: 78, point: [114.226508, 35.787133] },
+    { name: '山城区', value: 92, point: [114.223534, 35.914795] },
+    { name: '鹤山区', value: 65, point: [114.127099, 35.966546] },
+    { name: '浚县', value: 105, point: [114.482398, 35.671496] },
+    { name: '淇县', value: 83, point: [114.161841, 35.661286] }
   ]
   const lineSeriesData: any = []
   const maxValue: number = Math.max(...districtData.map(item => item.value))
@@ -311,9 +288,9 @@ const getLineData = () => {
       label: {
         normal: {
           show: true,
-          formatter: function (params: any) {
-            return `{cityName|${params.name}}\n {value|${params.data.data}} {unit|万人}`
-          },
+           formatter: function (params: any) {
+             return `{cityName|${params.name}}\n {value|${params.data.data}} {unit|AQI}`
+           },
           rich: {
             cityName: {
               color: 'rgba(201, 211, 234, 1)',
